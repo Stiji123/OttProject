@@ -1,0 +1,76 @@
+{% block title %} {% endblock %}
+
+{% block body %}
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background: linear-gradient(to bottom, #400040, #000000); /* Dark Purple to Black gradient */
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+
+    .movie-details {
+        background: linear-gradient(to bottom, #400040, #000000); /* Dark Purple to Black gradient */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add a subtle box shadow for depth */
+        border-radius: 8px;
+        padding: 20px;
+        text-align: left; /* Align text to the left */
+        color: #fff; /* Text color adjusted for better visibility */
+    }
+
+    h1 {
+        margin-bottom: 10px;
+    }
+
+    img {
+        width: 100%; /* Make the image width 100% of its container */
+        max-width: 100%; /* Ensure the image does not exceed its original size */
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
+
+    p {
+        margin-bottom: 10px;
+    }
+
+    strong {
+        color: #fff;
+    }
+
+    .watch-video-btn {
+        display: inline-block;
+        padding: 10px 20px;
+        font-size: 16px;
+        text-decoration: none;
+        color: #fff;
+        background-color: #5e2c5e;
+        border-radius: 5px;
+        transition: background-color 0.3s ease;
+    }
+
+    .watch-video-btn:hover {
+        background-color: #5e2c5e;
+    }
+</style>
+
+<div class="movie-details">
+    <h1>{{ movie.title }}</h1>
+    <img src="{{ movie.image_cover.url }}" alt="{{ movie.title }} Cover">
+    <p>{{ movie.description }}</p>
+    <p><strong>Genre:</strong> {{ movie.genre }}</p>
+    <p><strong>Release Date:</strong> {{ movie.release_date }}</p>
+    <p><strong>Language:</strong> {{ movie.language }}</p>
+    <p><strong>Actor:</strong> {{ movie.actor }}</p>
+    <p><strong>Director:</strong> {{ movie.director }}</p>
+    <p><strong>Ratings:</strong> {{ movie.ratings }}</p>
+    <!-- Add more details as needed -->
+    <!-- Button to watch the video -->
+    <a href="{% url 'kidsplay_video' movie.id %}" class="watch-video-btn">Watch Movie</a>
+</div>
+
+
+{% endblock %}

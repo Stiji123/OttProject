@@ -1,0 +1,70 @@
+{% block title %} {% endblock %}
+
+{% block body %}
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background: linear-gradient(to bottom, #400040, #000000); /* Dark Purple to Black gradient */
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+
+    .movie-details {
+        background: linear-gradient(to bottom, #400040, #000000); /* Dark Purple to Black gradient */
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Add a subtle box shadow for depth */
+        border-radius: 8px;
+        overflow: hidden; /* Ensure the overflow is hidden to contain absolute-positioned elements */
+        position: relative; /* Set the position to relative for absolute positioning */
+        color: #fff; /* Text color adjusted for better visibility */
+    }
+
+    .cover-image {
+        width: 100%; /* Make the image width 100% of its container */
+        max-width: 100%; /* Ensure the image does not exceed its original size */
+        border-radius: 8px;
+    }
+
+    .subscribe-btn-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        text-align: center;
+    }
+
+    .watch-video-btn {
+        display: inline-block;
+        padding: 15px 30px; /* Increased size */
+        font-size: 30px; /* Increased font size */
+        text-decoration: none;
+        color: #fff;
+        background-color: #001f3f; /* Navy blue background */
+        border-radius: 8px;
+        transition: background-color 0.3s ease;
+    }
+
+    .watch-video-btn:hover {
+        background-color:  linear-gradient(to right, #1a0024, #550077); /* Darker navy blue on hover */
+    }
+</style>
+
+<div class="movie-details">
+    <div class="subscribe-btn-container">
+        <h1>{{ movie.title }}</h1>
+        <a href="{% url 'subscribe_page1' movie.id %}" class="watch-video-btn">Subscribe Now To Watch</a>
+    </div>
+    <img src="{{ movie.image_cover.url }}" alt="{{ movie.title }} Cover" class="cover-image">
+    <p>{{ movie.description }}</p>
+    <p><strong>Genre:</strong> {{ movie.genre }}</p>
+    <p><strong>Release Date:</strong> {{ movie.release_date }}</p>
+    <p><strong>Language:</strong> {{ movie.language }}</p>
+    <p><strong>Actor:</strong> {{ movie.actor }}</p>
+    <p><strong>Director:</strong> {{ movie.director }}</p>
+    <p><strong>Ratings:</strong> {{ movie.ratings }}</p>
+    <!-- Add more details as needed -->
+</div>
+{% endblock %}

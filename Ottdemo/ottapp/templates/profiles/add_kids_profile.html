@@ -1,0 +1,43 @@
+<!-- templates/profiles/add_kid_profile.html -->
+
+{% block body %}
+<div class="container mt-5">
+    <div class="card mx-auto" style="max-width: 400px;">
+        <div class="card-body">
+            <h2 class="card-title text-center mb-4">Add New Kid Profile</h2>
+
+            {% if limit_reached %}
+                <p class="text-danger">You can create a maximum of 2 kid profile only.</p>
+            {% endif %}
+
+            {% if kid_profile_exists %}
+                <p class="text-danger">You have already created two kid profile. You can create only two kid profiles.</p>
+            {% else %}
+                <form method="post" action="#" enctype="multipart/form-data">
+                    {% load static %}
+                    {% csrf_token %}
+                    {{ form.errors }} {# Add this line to display form errors #}
+
+                    <!-- Name -->
+                    <div class="mb-3">
+                        {{ form.name.label_tag }}
+                        {{ form.name }}
+                    </div>
+
+                    <div class="mb-3">
+                        {{ form.image.label_tag }}
+                        {{ form.image }}
+                    </div>
+
+                    <!-- Display selected avatar image based on the choice -->
+                    {% if form.image.value %}
+                        <img src="{% with avatar=form.image.value|stringformat:'s' %}{% static 'profiles/'|add:avatar %}{% endwith %}" class="avatar-option" alt="Selected Avatar">
+                    {% endif %}
+
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

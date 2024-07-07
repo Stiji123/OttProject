@@ -1,0 +1,77 @@
+<!-- profiles/templates/profiles/edit_profile.html -->
+{% block title %}
+  <title>Edit Profile</title>
+{% endblock %}
+
+{% block body %}
+  <style>
+    body {
+        background: linear-gradient(to bottom, #400040, #000000); /* Dark Purple to Black gradient */
+        color: #fff; /* Text color adjusted for better visibility */
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 100vh;
+        flex-direction: column;
+    }
+
+    h1 {
+        margin-top: 50px; /* Adjust top margin */
+        text-align: center; /* Center the heading */
+    }
+
+    form {
+        margin-top: 20px; /* Adjust top margin of the form */
+        text-align: left; /* Align form elements to the left */
+    }
+
+    label {
+        display: block;
+        margin-bottom: 10px;
+    }
+
+    input {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        box-sizing: border-box;
+    }
+
+    button {
+        background-color: #5e2c5e;
+        color: #fff;
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    button:hover {
+        background-color: #4a214a;
+    }
+  </style>
+
+  <h1>Edit Profile</h1>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+
+
+
+    <!-- Add name input field -->
+    <label for="name">Name:</label>
+    <input type="text" name="name" value="{{ profile.name }}" required>
+
+    <!-- Add image input field -->
+    <label for="image">Image:</label>
+    <input type="file" name="image" accept="image/*">
+
+    <!-- Add PIN input field -->
+    <label for="pin">Enter PIN:</label>
+    <input type="password" name="pin" required>
+
+    <button type="submit">Save Changes</button>
+  </form>
+{% endblock %}

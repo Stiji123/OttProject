@@ -1,0 +1,245 @@
+<!-- profiles/templates/profiles/profile_selection.html -->
+{% block body %}
+<style>
+    body {
+        background: linear-gradient(to bottom, #400040, #000000); /* Dark Purple to Black gradient */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        margin: 0;
+    }
+    .container {
+        text-align: center; /* Center text within the container */
+    }
+    .row {
+        display: flex;
+        justify-content: center; /* Center the profiles */
+        gap: 50px; /* Adjust the gap between profile cards */
+    }
+    .profile-card {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+        position: relative;
+        width: 100px; /* Reduced width */
+        height: 130px; /* Reduced height */
+    }
+    .profile-card:hover {
+        transform: scale(1.05);
+    }
+    .profile-image {
+        width: 100%;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        height: 97px; /* Adjusted height */
+        object-fit: cover;
+    }
+    .profile-details {
+        padding: 5px;
+        text-align: center; /* Center the text */
+    }
+<!--    .btn-add-profile {-->
+<!--        font-size: 18px; /* Adjusted font size */-->
+<!--        color: #007bff;-->
+<!--        cursor: pointer;-->
+<!--        transition: color 0.3s ease;-->
+<!--        display: block;-->
+<!--        margin: auto;-->
+<!--        margin-top: 5px;-->
+<!--        width: 100px; /* Reduced width */-->
+<!--        height: 120px; /* Reduced height */-->
+<!--    }-->
+
+
+    .btn-add-profile {
+        font-size: 18px; /* Adjusted font size */
+        color: black;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        display: block;
+        margin: auto;
+        margin-top: 5px;
+        width: 100px; /* Reduced width */
+        height: 80px; /* Reduced height */
+        background-color: #ddd; /* Updated color to #ddd */
+        border: 1px solid #ddd;
+        border-radius: 8px; /* Circular shape */
+        line-height: 60px; /* Vertically center the plus sign */
+    }
+
+    h2 {
+        color: white;
+        margin-bottom: 50px;/* Change the color of the heading to white */
+    }
+
+    .btn-add-profile:hover {
+        color: #0056b3;
+    }
+    .add-profile-card {
+        background-color: white;
+        color: black;
+        border: 1px solid white;
+        text-align: center;
+        padding: 5px;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        cursor: pointer;
+        transition: transform 0.3s ease;
+        position: relative;
+        width: 100px; /* Reduced width */
+        height: 120px; /* Reduced height */
+    }
+    .add-profile-card:hover {
+        transform: scale(1.05);
+    }
+    .add-profile-card:before {
+        content: '\02795';
+        font-size: 24px; /* Adjusted font size */
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+
+    .profile-link {
+        color: inherit; /* Use the default text color */
+        text-decoration: none; /* Remove the underline */
+        cursor: pointer; /* Set the cursor to pointer to indicate interactivity */
+    }
+
+    .profile-link:hover {
+        color: inherit; /* Use the default text color on hover */
+        text-decoration: underline; /* Underline on hover if desired */
+    }
+    .profile-icons {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 10px;
+    }
+
+    .profile-icons a {
+        text-decoration: none;
+        color: #333;
+    }
+
+    .profile-icons svg {
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+        transition: fill 0.3s ease;
+    }
+
+    .profile-icons svg:hover {
+        fill: #007bff;
+    }
+
+    .card-title {
+        margin: 0;
+        font-size: 1.2em;
+        color: black;
+
+    }
+
+    .edit-icon,
+    .delete-icon {
+        position: absolute;
+        bottom: 5px;
+        cursor: pointer;
+        color: #333;
+        text-decoration: none;
+
+        transition: color 0.3s ease;
+    }
+
+    .edit-icon:hover,
+    .delete-icon:hover {
+        color: #007bff;
+    }
+
+    .edit-icon {
+        left: 5px;
+        top: 110px;
+
+    }
+
+    .delete-icon {
+        right: 5px;
+        top: 110px;
+
+    }
+
+    .back-arrow {
+        color: #fff !important; /* Set the color to white with !important */
+        text-decoration: none;
+        font-size: 20px; /* Adjust the font size as needed */
+        margin-right: 1300px; /* Optional: Add margin for spacing */
+    }
+
+</style>
+
+<title>Your Profiles</title>
+
+<body>
+
+<div class="container">
+    <a href="#" class="back-arrow" onclick="history.back()">←</a>
+
+    <h2 class="text-center mb-4">Who's Watching???</h2>
+    <div class="row">
+        {% for profile in adult_profiles %}
+                <a href="{% url 'verify_pin' user_profile_id=profile.id %}" class="profile-link">
+                    <div class="profile-card">
+                        <img src="{{ profile.image.url }}" class="profile-image" alt="{{ profile.name }}">
+                        <div class="profile-details">
+                            <h5 class="card-title">{{ profile.name }}</h5>
+                            <a href="{% url 'edit_profile' profile.id %}" class="edit-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325"/>
+                                </svg>
+                            </a>
+                            <a href="{% url 'delete_profile' profile.id %}" class="delete-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                                    <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+                                    <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </a>
+        {% endfor %}
+        <div class="profile-card">
+            <div class="add-profile-card" onclick="location.href='{% url 'add_profile' customer.id %}'">
+                <span class="btn-add-profile"></span>
+                <p class="text-uppercase font-weight-bold">Add Profile</p>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="text-center mb-4 mt-5"></h2>
+    <div class="row">
+        {% for profile in kids_profiles %}
+            <a href="{% url 'kids_welcome' kids_profile_id=profile.id %}" class="profile-link">
+                <div class="profile-card">
+                    <img src="{{ profile.image.url }}" class="profile-image" alt="{{ profile.name }}">
+                    <div class="profile-details">
+                        <h5 class="card-title">KIDS</h5>
+                        <!-- Add any additional details or actions here -->
+                    </div>
+                </div>
+            </a>
+        {% endfor %}
+
+<!--        <div class="profile-card">-->
+<!--            <div class="add-profile-card" onclick="location.href='{% url 'add_kids_profile' customer.id %}'">-->
+<!--                <span class="btn-add-profile"></span>-->
+<!--                <p class="text-uppercase font-weight-bold">Kid Profile</p>-->
+<!--            </div>-->
+<!--        </div>-->
+    </div>
+</div>
+
+</body>
+{% endblock %}

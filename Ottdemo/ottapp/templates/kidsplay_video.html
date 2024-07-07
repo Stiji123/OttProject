@@ -1,0 +1,159 @@
+{% block title %}{{ movie.title }}{% endblock %}
+
+{% block body %}
+<style>
+    body {
+        font-family: 'Arial', sans-serif;
+        background: #000;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+        overflow: hidden; /* Hide horizontal scrollbar */
+    }
+
+    .video-player {
+        position: relative;
+        text-align: center;
+        color: #fff;
+    }
+
+    video {
+        width: 100vw;
+        height: 100vh;
+        background: #000;
+    }
+
+    h1 {
+        position: absolute;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+    }
+
+    .close-icon {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        color: #fff;
+        font-size: 24px;
+        cursor: pointer;
+    }
+
+    button {
+        background: #5e2c5e;
+        color: #fff;
+        padding: 10px 20px;
+        font-size: 16px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+        background: #5e2c5e;
+    }
+
+    label {
+        margin-right: 10px;
+        color: #fff;
+    }
+
+    select {
+        padding: 8px;
+        font-size: 14px;
+    }
+
+    div.options {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 10px;
+    }
+</style>
+
+<div class="video-player">
+    <h1>{{ movie.title }}</h1>
+    <span class="close-icon" onclick="closeVideo()">✖</span>
+    <video id="fullScreenVideo" controls autoplay>
+        <source src="{{ movie.video.url }}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+    <div class="options">
+        <div>
+            <label for="quality">Quality:</label>
+            <select id="quality" onchange="changeQuality()">
+                <option value="auto">Auto</option>
+                <option value="480">480p</option>
+                <option value="720">720p</option>
+                <option value="1080">1080p</option>
+            </select>
+        </div>
+        <div>
+            <label for="speed">Speed:</label>
+            <select id="speed" onchange="changeSpeed()">
+                <option value="1">Normal</option>
+                <option value="1.5">1.5x</option>
+                <option value="2">2x</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<script>
+   <script>
+    var video = document.getElementById('fullScreenVideo');
+    var speedSelect = document.getElementById('speed');
+
+    video.addEventListener('click', function () {
+        if (video.paused) {
+            video.play();
+        } else {
+            video.pause();
+        }
+    });
+
+    video.addEventListener('ended', function () {
+        closeVideo();
+    });
+
+    document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+            closeVideo();
+        }
+    });
+
+    function closeVideo() {
+        video.pause();
+        exitFullscreen();
+    }
+
+    function exitFullscreen() {
+        if (document.exitFullscreen) {
+            document.exitFullscreen();
+        } else if (document.mozCancelFullScreen) {
+            document.mozCancelFullScreen();
+        } else if (document.webkitExitFullscreen) {
+            document.webkitExitFullscreen();
+        } else if (document.msExitFullscreen) {
+            document.msExitFullscreen();
+        }
+    }
+
+    function changeQuality() {
+        var quality = document.getElementById('quality').value;
+        video.src = "{{ movie.video.url }}" + "?quality=" + quality;
+        video.load();
+        video.play();
+    }
+
+    function changeSpeed() {
+        var speed = speedSelect.value;
+        video.playbackRate = parseFloat(speed);
+    }
+</script>
+
+</script>
+{% endblock %}

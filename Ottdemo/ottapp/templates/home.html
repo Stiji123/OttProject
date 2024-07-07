@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>STREAMAX</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bungee&display=swap">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background: url('path/to/background-image.jpg') center/cover;
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background: linear-gradient(to right, #1a0024, #550077);
+        }
+        #minflick-container {
+            background: linear-gradient(to right, #1a0024, #550077);
+            padding: 15px;
+            border-radius: 8px;
+            opacity: 0;
+            transition: opacity 1s ease-in-out, transform 1s ease-in-out, background 1s ease-in-out, box-shadow 1s ease-in-out;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            margin-bottom: 20px;
+        }
+        #minflick {
+            font-size: 72px;
+            margin-top: 10px;
+            font-family: 'Exo 2', sans-serif;
+            font-weight: bold;
+            letter-spacing: 5px;
+            text-shadow: 3px 3px 5px rgba(0, 0, 0, 0.5);
+            position: relative;
+            animation: glowing 2s infinite;
+        }
+        @keyframes glowing {
+            0%, 100% {
+                color: purple;
+                text-shadow: 0 0 20px rgba(0, 0, 0, 0.8);
+            }
+            50% {
+                color: White ; /* Glowing color */
+                text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+            }
+        }
+        #logo {
+            width: 80px;
+            height: auto;
+        }
+        .btn-container {
+            display: flex;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            font-size: 20px;
+            text-align: center;
+            text-decoration: none;
+            background: linear-gradient(to right, #1a0024, #550077);
+            color: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+            margin-top: 50px;
+        }
+        .btn-signup {
+            background-color: #7d3c7d;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="minflick-container">
+        <img src="/media/profile_images/logo.png" alt="logo" id="logo">
+        <br>
+        <span id="minflick">STREAMAX</span>
+    </div>
+
+    <script>
+        setTimeout(function() {
+            var buttons = document.getElementsByClassName("btn");
+            for (var i = 0; i < buttons.length; i++) {
+                buttons[i].style.opacity = "1";
+            }
+        }, 3000);
+
+        window.onload = function() {
+            document.getElementById("minflick-container").style.opacity = "1";
+            document.getElementById("minflick-container").style.transform = "scale(1.2)";
+        };
+    </script>
+
+    <div class="btn-container">
+        <a href="register_form/" class="btn btn-signup">Signup</a>
+        <a href="login/" class="btn">Login</a>
+    </div>
+
+</body>
+</html>

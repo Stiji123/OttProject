@@ -1,0 +1,101 @@
+<!-- profiles/templates/profiles/verify_pin.html -->
+
+
+{% block body %}
+  <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to bottom, #400040, #000000); /* Dark purple to black gradient */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            color: #fff;
+        }
+
+        .verification-window {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            margin-top: 5%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        .back-arrow {
+            font-size: 24px; /* Adjusted font size */
+            color: #007bff;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            text-decoration: none; /* Remove the underline */
+            position: absolute; /* Make the arrow position absolute */
+            top: 10px; /* Adjust top position */
+            left: 10px; /* Adjust left position */
+        }
+
+        .back-arrow:hover {
+            color: #0056b3;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .mb-4 {
+            margin-bottom: 20px;
+            color: black;
+        }
+
+        .error-message {
+            color: #dc3545;
+        }
+
+        form {
+            width: 80%;
+            margin: 20px auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #2980b9;
+        }
+
+
+    </style>
+<body>
+    <div class="verification-window">
+        <a href="#" class="back-arrow" onclick="history.back()">←</a>
+        <h2 class="text-center mb-4">Verify PIN</h2>
+
+        <form method="post" action="{% url 'verify_pin' user_profile_id=user_profile.id %}">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Verify PIN</button>
+
+            {% if form.errors %}
+                <p class="error-message">{{ form.errors.pin.0 }}</p>
+            {% endif %}
+        </form>
+    </div>
+</body>
+
+{% endblock %}

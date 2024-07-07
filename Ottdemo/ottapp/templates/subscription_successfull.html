@@ -1,0 +1,55 @@
+{% block title %} {% endblock %}
+
+{% block body %}
+
+<style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #1a0024, #0c001c);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center vertically */
+            justify-content: center; /* Center horizontally */
+            height: 100vh; /* Set to full height of the viewport */
+            text-align: center;
+        }
+
+        h1 {
+            padding: 20px;
+        }
+
+        h2 {
+            margin-top: 10px;
+        }
+
+        p {
+            margin-top: 10px;
+        }
+
+        .stream-btn {
+            background-color: #5e2c5e;
+            color: #fff;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none; /* Remove default hyperlink styling */
+            margin-top: 20px; /* Adjust margin as needed */
+            font-size: 16px;
+        }
+    </style>
+
+<body>
+
+     <h1>Subscription Successful! 🎉</h1>
+    <h2>Thank you for subscribing to our service.</h2>
+    <p>Now enjoy a whole new level of entertainment.</p>
+    <a href="{% url 'welcome2' %}" class="stream-btn">Stream Now</a>
+
+</body>
+
+
+{% endblock %}

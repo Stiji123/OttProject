@@ -1,0 +1,55 @@
+<!-- profiles/templates/profiles/error.html -->
+{% block body %}
+    <style>
+    body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(to bottom, #400040, #000000); /* Dark purple to black gradient */
+        text-align: center;
+        margin: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+    }
+    .error-container {
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        max-width: 400px;
+        margin: auto;
+        position: relative; /* Make the container position relative */
+    }
+    h1 {
+        color: #dc3545; /* Red color for the error heading */
+    }
+    p {
+        margin-bottom: 20px;
+    }
+    .back-arrow {
+        font-size: 24px; /* Adjusted font size */
+        color: #007bff;
+        cursor: pointer;
+        transition: color 0.3s ease;
+        text-decoration: none; /* Remove the underline */
+        position: absolute; /* Make the arrow position absolute */
+        top: 10px; /* Adjust top position */
+        left: 10px; /* Adjust left position */
+    }
+    .back-arrow:hover {
+        color: #0056b3;
+    }
+</style>
+</head>
+<body>
+    <div class="error-container">
+        <a href="#" class="back-arrow" onclick="history.back()">←</a>
+        <h1>Oops!!!</h1>
+        <p>{{ error_message }}</p>
+    </div>
+</body>
+
+
+{% endblock %}

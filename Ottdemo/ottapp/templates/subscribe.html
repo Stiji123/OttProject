@@ -1,0 +1,125 @@
+{% block title %} {% endblock %}
+
+{% block body %}
+<style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(to bottom, #1a0024, #0c001c);
+            color: #fff;
+        }
+        h1 {
+            text-align: center;
+            padding: 20px;
+        }
+        .subscription-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        table {
+            width: 80%;
+            border-collapse: collapse;
+            margin: 20px;
+        }
+        th, td {
+            border: 1px solid #5e2c5e;
+            padding: 15px;
+            text-align: center;
+        }
+        th {
+            background-color: #2c0735;
+            color: #fff;
+        }
+        .subscription-plans {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+        }
+        .subscription-plan {
+            background-color: #2c0735;
+            color: #fff;
+            padding: 20px;
+            margin: 10px;
+            border-radius: 10px;
+            text-align: center;
+        }
+</style>
+
+<body>
+
+    <h1>Unlock Endless Entertainment with a Subscription</h1>
+
+    <div class="subscription-container">
+        <table>
+            <tr>
+                <th></th>
+                <th>Basic</th>
+                <th>Standard</th>
+                <th>Premium</th>
+            </tr>
+            <tr>
+                <td>All Content</td>
+                <td>✔</td>
+                <td>✔</td>
+                <td>✔</td>
+            </tr>
+            <tr>
+                <td>Watch on TV or Laptops</td>
+                <td></td>
+                <td>✔</td>
+                <td>✔</td>
+            </tr>
+            <tr>
+                <td>Ads-Free Content</td>
+                <td></td>
+                <td></td>
+                <td>✔</td>
+            </tr>
+            <tr>
+                <td>Number of Devices</td>
+                <td>1</td>
+                <td>2</td>
+                <td>4</td>
+            </tr>
+            <tr>
+                <td>Highest Video Quality</td>
+                <td>SD</td>
+                <td>HD</td>
+                <td>4K</td>
+            </tr>
+            <tr>
+                <td>Audio Quality</td>
+                <td>Standard</td>
+                <td>High</td>
+                <td>High</td>
+            </tr>
+        </table>
+
+        <div class="subscription-plans">
+            <div class="subscription-plan">
+                <h2>Basic Plan</h2>
+                <p>₹149 INR/month</p>
+                 <a href="/subscribe/mobile" class="subscribe-btn">Subscribe Now</a>
+                <!-- Add any additional details or subscribe button for this plan -->
+            </div>
+
+            <div class="subscription-plan">
+                <h2>Standard Plan</h2>
+                <p>₹199 INR/month</p>
+                 <a href="/subscribe/mobile" class="subscribe-btn">Subscribe Now</a>
+                <!-- Add any additional details or subscribe button for this plan -->
+            </div>
+
+            <div class="subscription-plan">
+                <h2>Premium Plan</h2>
+                <p>₹499 INR/month</p>
+                 <a href="/subscribe/mobile" class="subscribe-btn">Subscribe Now</a>
+                <!-- Add any additional details or subscribe button for this plan -->
+            </div>
+        </div>
+    </div>
+
+</body>
+{% endblock %}
